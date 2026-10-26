@@ -1,0 +1,66 @@
+<!DOCTYPE html> <!-- 宣告 HTML5 文件格式 -->
+<html lang="zh-Hant"> <!-- 指定網頁語言為繁體中文 -->
+<head> <!-- 開始文件頭部設定 -->
+  <meta charset="UTF-8"> <!-- 設定文件使用 UTF-8 編碼 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 讓手機版面依裝置寬度縮放 -->
+  <title>p5.js 拖曳題測驗系統</title> <!-- 設定瀏覽器分頁標題 -->
+  <style> /* 開始設定網頁樣式 */
+    :root { /* 設定全域顏色變數 */
+      color-scheme: dark; /* 讓瀏覽器採用深色介面色彩 */
+    } /* 結束全域顏色變數設定 */
+    html, body { /* 設定頁面與文件本體尺寸 */
+      width: 100%; /* 讓頁面佔滿瀏覽器寬度 */
+      height: 100%; /* 讓頁面佔滿瀏覽器高度 */
+      margin: 0; /* 移除瀏覽器預設外距 */
+      padding: 0; /* 移除瀏覽器預設內距 */
+      overflow: hidden; /* 禁止頁面出現捲軸 */
+      background: #08111f; /* 設定畫布載入前的深色背景 */
+    } /* 結束頁面本體設定 */
+    body { /* 設定文件本體的顯示方式 */
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; /* 指定繁體中文優先字型 */
+    } /* 結束文件本體設定 */
+    canvas { /* 設定 p5.js 畫布顯示方式 */
+      display: block; /* 移除 canvas 行內元素的底部空白 */
+      width: 100vw; /* 讓畫布符合視窗寬度 */
+      height: 100vh; /* 讓畫布符合視窗高度 */
+      touch-action: none; /* 讓畫布接管觸控拖曳事件 */
+    } /* 結束畫布設定 */
+    #loading { /* 設定載入中的提示訊息 */
+      position: fixed; /* 讓提示固定在視窗中 */
+      inset: 0; /* 讓提示覆蓋整個視窗 */
+      display: grid; /* 使用網格配置內容 */
+      place-items: center; /* 將文字置於畫面中央 */
+      padding: 24px; /* 保留手機畫面邊界空間 */
+      box-sizing: border-box; /* 讓內距包含在元素尺寸內 */
+      color: #dbeafe; /* 設定提示文字顏色 */
+      background: #08111f; /* 設定提示背景顏色 */
+      font-size: 18px; /* 設定提示文字大小 */
+      text-align: center; /* 讓提示文字置中 */
+      z-index: 10; /* 讓提示位於畫布上方 */
+    } /* 結束載入提示設定 */
+    #cdn-error { /* 設定 CDN 失敗提示訊息 */
+      position: fixed; /* 讓錯誤提示固定在視窗中 */
+      inset: 0; /* 讓錯誤提示覆蓋整個視窗 */
+      display: grid; /* 使用網格配置內容 */
+      place-items: center; /* 將錯誤文字置於畫面中央 */
+      padding: 24px; /* 保留手機畫面邊界空間 */
+      box-sizing: border-box; /* 讓內距包含在元素尺寸內 */
+      color: #fee2e2; /* 設定錯誤文字顏色 */
+      background: #3b0d18; /* 設定錯誤背景顏色 */
+      font-size: 18px; /* 設定錯誤文字大小 */
+      line-height: 1.7; /* 增加錯誤文字行距 */
+      text-align: center; /* 讓錯誤文字置中 */
+      z-index: 20; /* 讓錯誤提示位於所有內容上方 */
+    } /* 結束 CDN 錯誤提示設定 */
+    [hidden] { /* 統一隱藏提示元素 */
+      display: none !important; /* 強制隱藏已標記 hidden 的元素 */
+    } /* 結束隱藏元素設定 */
+  </style> <!-- 結束網頁樣式設定 -->
+</head> <!-- 結束文件頭部設定 -->
+<body> <!-- 開始文件本體 -->
+  <div id="loading">正在載入 p5.js 測驗系統，請稍候。</div> <!-- 顯示 p5.js 載入中的狀態 -->
+  <div id="cdn-error" hidden>無法載入 p5.js 函式庫。請確認網路連線後重新整理頁面，或確認瀏覽器沒有封鎖 CDN。</div> <!-- 顯示 CDN 載入失敗的繁體中文錯誤 -->
+  <script id="p5-cdn" src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js" onerror="document.getElementById('loading').hidden = true; document.getElementById('cdn-error').hidden = false;"></script> <!-- 載入指定版本的 p5.js CDN 並處理失敗狀態 -->
+  <script src="sketch.js"></script> <!-- 載入同一資料夾中的 sketch.js -->
+</body> <!-- 結束文件本體 -->
+</html> <!-- 結束 HTML5 文件 -->
